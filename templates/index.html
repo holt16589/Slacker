@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset=utf-8”>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Slacker</title>
+     <link rel="icon" type="image/png" href="../static/images/slacker.ico">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+     <script src="{{ url_for('static', filename='js/anchorme.js') }}"></script>
+
+</head>
+
+<body>
+
+     <div class="modal fade" id="modal-username" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center text-white">
+        <h4 class="modal-title w-100 font-weight-bold">Welcome to Slacker!</h4>
+      </div>
+
+      <div class="modal-body mx-3">
+        <div class="md-form mb-3 text-center">
+          <h5 class="modal-title w-100 font-weight-bold">Choose a display name to get started:</h5>
+          <input type="text" id="username-input" class="form-control validate mt-3" placeholder = "#display-name "required>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center mo">
+        <button type="submit" id="get-started-btn" class="btn btn-dark mt-2 modal-close">Get Started!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+
+ <div class="modal-body mx-3">
+   <div class="md-form mb-3 text-center">
+     <h5 class="modal-title w-100 font-weight-bold">Upload your JPEG file:</h5>
+    <input type="file" id="upload-image" name="file">
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header" align="center">
+<img class="circle avatar-image" id="side-avatar" src="" width="40%">
+<h5 id="welcome-message"></h5>
+            </div>
+
+            <div class="row">
+<form class="input-field col s12" id="new_channel_form" align="center">
+    <input type="text" class="form-control" id="input_new_channel" placeholder="#new-channel">
+    <button class="btn btn-small btn-secondary" id="add_channel_button">Create New Channel</button>
+</form>
+</div>
+
+            <ul class="list-unstyled components" id = "channel-list">
+  <h6 align="center"><b>Channels</b></h6>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+          <nav class="navbar navbar-expand-lg navbar-custom navbar-fixed-top">
+            <button class = "btn btn-outline-light" type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+
+            <div class="ml-4 order-0">
+            <img src="../static/images/dotty.svg" width="50" height="50" class="brand-logo right" alt="">
+               </div>
+          </nav>
+
+          <div id="messages-body">
+
+            <ul id="messages-list">
+              <!-- Chat messages go here! -->
+            </ul>
+
+</div>
+
+<footer id="message-footer">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" id="message-input">
+    <div class="message-input">
+      <button class="btn btn-outline-secondary" type="button" id="upload-btn"><i class="fas fa-images"></i></button>
+      <button class="btn btn-outline-secondary" type="button" id="send-btn">Send</button>
+    </div>
+  </div>
+</footer>
+        </div>
+
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+
+
+     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#sidebar").mCustomScrollbar({
+                 theme: "minimal"
+             });
+
+             $('#sidebarCollapse').on('click', function () {
+                 $('#sidebar, #content').toggleClass('active');
+                 $('.collapse.in').toggleClass('in');
+             });
+         });
+     </script>
+
+
+</body>
+
+</html>
