@@ -6,6 +6,7 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "this is a secret key"
 socketio = SocketIO(app)
+debug = True
 
 
 #users stored on the server list
@@ -92,6 +93,5 @@ def new_image(data):
     emit("base64 image", {"username": username, "currentChannel": currentChannel, "file": file, "timeStamp": timeStamp}, broadcast=True)
 
 if __name__ == '__main__':
-        app.debug = True
-        port = int(os.environ.get(“PORT”, 5000))
-        socketio.run(app, port=port)
+    if debug:
+        app.run(debug=True)
