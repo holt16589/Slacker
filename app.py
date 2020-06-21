@@ -50,6 +50,7 @@ def new_channel(data):
 @socketio.on("change channel")
 def change_channel(data):
     username = data['username']
+    selectedChannel=data['selectedChannel']
     leave_room(data['previousChannel'])
     join_room(data['selectedChannel'])
     emit ("update channel list", {"channelList": channelList})
