@@ -94,4 +94,6 @@ def new_image(data):
 
 if __name__ == '__main__':
     if debug:
-        app.run(debug=True)
+        socketio.run(app, debug=True)
+    else:
+        socketio.run(app, debug=False)
