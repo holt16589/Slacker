@@ -4,7 +4,7 @@ from flask import Flask, session, render_template, redirect, url_for, request, j
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "this is a secret key"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 debug = True
 
