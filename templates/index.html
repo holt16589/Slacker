@@ -93,7 +93,7 @@ aria-hidden="true">
             </button>
 
             <div class="ml-4 order-0">
-            <img src="../static/images/dotty.svg" width="50" height="50" class="brand-logo right" alt="">
+            <img src="../static/images/dotty.svg" width="50" height="50" class="brand-logo right" alt="" id="slacker-logo">
                </div>
           </nav>
 
@@ -139,6 +139,7 @@ aria-hidden="true">
 
              $('#sidebarCollapse').on('click', function () {
                  $('#sidebar, #content').toggleClass('active');
+                 $('#sidebarCollapse').toggleClass('position-btn')
                  $('.collapse.in').toggleClass('in');
              });
          });

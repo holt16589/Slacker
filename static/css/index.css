@@ -171,12 +171,29 @@ ul ul a {
     #content {
         width: 100%;
     }
-    #content.active {
-        width: calc(100% - 250px);
-    }
     #sidebarCollapse span {
         display: none;
     }
+
+    #slacker-logo{
+      display: none;
+    }
+
+    .position-btn {
+       margin-left: 250px;
+       transition: all 0.3s;
+    }
+
+    body #content footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      transition: all 0.3s;
+      width: 100%;
+      height: 53px;
+      background-color: #fff;
+    }
+
 }
 /* ---------------------------------------------------
     message body
