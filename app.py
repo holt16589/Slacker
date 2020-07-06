@@ -89,8 +89,8 @@ def new_image(data):
     channelMessages[currentChannel].append(message)
 
     #validate file type, as only JPEG images are accepted
-    if fileName[-4:] != '.JPG' and fileName[-5:] != '.JPEG' and fileName[-4:] != '.jpg' and fileName[-5:] != '.jpeg':
-        error_message = "You must upload a JPG/JPEG image."
+    if fileName[-4:] != '.JPG' and fileName[-5:] != '.JPEG' and fileName[-4:] != '.jpg' and fileName[-5:] != '.jpeg' and fileName[-4:] != '.png' and fileName[-4:] != '.gif' and fileName[-4:] != '.GIF' and fileName[-4:] != '.PNG':
+        error_message = "You must upload a JPG/JPEG/PNG/GIF file."
         emit("error", error_message)
         return False
     #display image to all users in the applicable channel
