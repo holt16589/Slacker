@@ -16,7 +16,7 @@ userList = []
 channelList = ["general"]
 
 #dict to store up to 100 messages per channel
-#stores as {"channel": [username, message, timestamp]}
+#stores as {"channel": [username, message, timestamp, image]}
 channelMessages = {"general": []}
 
 @app.route("/", methods =['GET', 'POST'])
@@ -64,13 +64,14 @@ def new_message(data):
     currentChannel = data['selectedChannel']
     messageContent = data['messageContent']
     timestamp = data['timeStamp']
+    image = "N"
 
 #check to see if the channel message list has reached limit of 100
     if len(channelMessages[currentChannel]) >= 10:
         channelMessages[currentChannel].pop(0)
 
 #display new message to all users in the applicable channel
-    message = [username, messageContent, timestamp]
+    message = [username, messageContent, timestamp, image]
     channelMessages[currentChannel].append(message)
     emit("add new message", {"message": message}, channel= currentChannel, broadcast=True)
     return False
@@ -83,6 +84,9 @@ def new_image(data):
     file = data['file']
     fileName = data['fileName']
     timeStamp = data['timeStamp']
+    image = "Y"
+    message = [username, file, timeStamp, image]
+    channelMessages[currentChannel].append(message)
 
     #validate file type, as only JPEG images are accepted
     if fileName[-4:] != '.JPG' and fileName[-5:] != '.JPEG' and fileName[-4:] != '.jpg' and fileName[-5:] != '.jpeg':

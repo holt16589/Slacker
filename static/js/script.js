@@ -163,9 +163,11 @@ if (!selectedChannel){
 
             //display all messages in the current selected channel
             for(message of data['channelMessages']){
-              const li = document.createElement('li');
-              li.className = 'media my-3';
 
+              //check if the message is an image
+              if(message[3] == "N"){
+                const li = document.createElement('li');
+                li.className = 'media my-3';
 //use the Anchorme JS library to identify any URLs in the message and convert to a link
 //https://alexcorvi.github.io/anchorme.js/
               const input = message[1]
@@ -180,8 +182,17 @@ if (!selectedChannel){
 });
               li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" + message[0] + ".png\" class=\"mr-3\" alt=\"\" />" +
               "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" + message[0] + " <small class=\"text-muted\"> " + message[2] + "</small></h5>" + urlChecked + "</div>"
+                document.getElementById("messages-list").appendChild(li)
+            }
+            else{
+              const li = document.createElement('li');
+              li.className = 'media my-3';
+              //display image messages
+              li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" +  message[0] + ".png\" class=\"mr-3\" alt=\"\" />" +
+              "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" +  message[0] + " <small class=\"text-muted\"> " +  message[2] + "</small></h5>" + "<img src=\"" + message[1] +"\" class=\"mt-3 userImage\" alt=\"\" />" + "</div>"
               document.getElementById("messages-list").appendChild(li)
             }
+          }
             //scroll to bottom once messages are added
             scrollBottom();
 
