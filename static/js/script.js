@@ -44,7 +44,7 @@ if (!selectedChannel){
            else{
              //if user input looks good, update local storage, generate the display name on the page and hid the modal
              localStorage.setItem('username', displayname);
-             document.getElementById("side-avatar").src = "https://api.adorable.io/avatars/285/" + displayname + ".png";
+             document.getElementById("side-avatar").src = "https://api.hello-avatar.com/adorables/" + displayname;
              document.querySelector('#welcome-message').innerHTML = localStorage.getItem('username');
 
              //hide modal window once input is recieved
@@ -148,7 +148,7 @@ if (!selectedChannel){
                   li.innerHTML = '<a href="">#' + channel + "</a>";
                   }
                   document.getElementById("channel-list").appendChild(li);
-                  document.getElementById("side-avatar").src = "https://api.adorable.io/avatars/285/" + localStorage.getItem('username') + ".png";
+                  document.getElementById("side-avatar").src = "https://api.hello-avatar.com/adorables/" + localStorage.getItem('username');
               }
         });
 
@@ -180,7 +180,7 @@ if (!selectedChannel){
         },
     }
 });
-              li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" + message[0] + ".png\" class=\"mr-3\" alt=\"\" />" +
+              li.innerHTML = "<img src=\"https://api.hello-avatar.com/adorables/" + message[0] + "\" class=\"mr-3\" alt=\"\" />" +
               "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" + message[0] + " <small class=\"text-muted\"> " + message[2] + "</small></h5>" + urlChecked + "</div>"
                 document.getElementById("messages-list").appendChild(li)
             }
@@ -188,7 +188,7 @@ if (!selectedChannel){
               const li = document.createElement('li');
               li.className = 'media my-3';
               //display image messages
-              li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" +  message[0] + ".png\" class=\"mr-3\" alt=\"\" />" +
+              li.innerHTML = "<img src=\"https://api.hello-avatar.com/adorables/" +  message[0] + "\" class=\"mr-3\" alt=\"\" />" +
               "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" +  message[0] + " <small class=\"text-muted\"> " +  message[2] + "</small></h5>" + "<img src=\"" + message[1] +"\" class=\"mt-3 userImage\" alt=\"\" />" + "</div>"
               document.getElementById("messages-list").appendChild(li)
             }
@@ -218,7 +218,7 @@ options: {
 });
 
           li.className = 'media my-3';
-          li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" + message[0] + ".png\" class=\"mr-3\" alt=\"\" />" +
+          li.innerHTML = "<img src=\"https://api.hello-avatar.com/adorables/" + message[0] + "\" class=\"mr-3\" alt=\"\" />" +
           "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" + message[0] + " <small class=\"text-muted\"> " + message[2] + "</small></h5>" + urlChecked + "</div>"
           document.getElementById("messages-list").appendChild(li)
           scrollBottom();
@@ -247,7 +247,7 @@ options: {
             const messageList = document.querySelector('#messages-list');
             const li = document.createElement('li');
             li.className = 'media my-3';
-            li.innerHTML = "<img src=\"https://api.adorable.io/avatars/80/" + data.username + ".png\" class=\"mr-3\" alt=\"\" />" +
+            li.innerHTML = "<img src=\"https://api.hello-avatar.com/adorables/" + data.username + "\" class=\"mr-3\" alt=\"\" />" +
             "<div class=\"media-body\">" + "<h5 class=\"mt-0 mb-1\">" + data.username + " <small class=\"text-muted\"> " + data.timeStamp + "</small></h5>" + "<img src=\"" + data.file +"\" class=\"mt-3 userImage\" alt=\"\" />" + "</div>"
             document.getElementById("messages-list").appendChild(li)
             scrollBottom();
